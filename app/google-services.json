@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "627802799568",
+    "firebase_url": "https://test-6c4a8.firebaseio.com",
+    "project_id": "test-6c4a8",
+    "storage_bucket": "test-6c4a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627802799568:android:0a31e0641f6bf565",
+        "android_client_info": {
+          "package_name": "com.example.ali.projectmang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627802799568-kdqutprtc0uufs9lbnnjodhbmskklj33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnM97dKeZdBdBTDnn4qko88AJZbwCSgYs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627802799568:android:0c6b6c642f6f865f",
+        "android_client_info": {
+          "package_name": "com.example.islam.project_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627802799568-kdqutprtc0uufs9lbnnjodhbmskklj33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnM97dKeZdBdBTDnn4qko88AJZbwCSgYs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
