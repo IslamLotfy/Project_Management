@@ -1,9 +1,7 @@
 package com.example.islam.project_management;
 
-import android.database.Observable;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,22 +11,10 @@ import android.widget.Toast;
 import com.example.islam.project_management.Models.ActivityModel;
 import com.example.islam.project_management.RxFirebase.Authenticator;
 import com.example.islam.project_management.RxFirebase.RxFireBaseDB;
-import com.firebase.client.Firebase;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.common.data.DataBufferObserver;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import rx.Observer;
 
 
 /**
@@ -63,20 +49,28 @@ public class MainActivityFragment extends Fragment {
         DatabaseReference ref=databaseReference.child("MobileStudio").child("Users").child("UserID").child("activities").child("approvedActivity");
 //        Query messages = ref.orderByKey().limitToLast(1);
 //        DatabaseReference ref=databaseReference.child("Users");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ActivityModel activityModel= (ActivityModel) dataSnapshot.getValue();
-                Toast.makeText(getActivity(),activityModel.getUser(),Toast.LENGTH_LONG);
-            }
+        System.out.println(ref.toString());
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                ActivityModel activityModel= (ActivityModel) dataSnapshot.getValue();
+//                Toast.makeText(getActivity(),activityModel.getUser(),Toast.LENGTH_LONG);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+        RxFireBaseDB.observeValueEvent(ref).subscribe(dataSnapshot -> {
 
-            }
-        });
-        RxFireBaseDB.observeSingleValueEvent(ref,ActivityModel.class).subscribe(activityModel -> {
+            Toast.makeText(getActivity(), dataSnapshot.toString(), Toast.LENGTH_LONG).show();
+            ActivityModel activityModel = (ActivityModel) dataSnapshot.getValue();
+            Log.w("tag ", dataSnapshot.getKey());
             Log.w("tag ",activityModel.getUser());
+            Log.w("tag ", activityModel.getDate());
+            Log.w("tag ", activityModel.getDuration());
         },throwable -> {
             Log.e("RxFirebaseSample", throwable.toString());
         });
