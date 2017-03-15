@@ -15,6 +15,7 @@ import com.example.islam.project_management.Activities.MainActivity;
 import com.example.islam.project_management.Activities.Signup;
 import com.example.islam.project_management.R;
 import com.example.islam.project_management.RxFirebase.Authenticator;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -36,6 +37,8 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        checkSession();
+
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         logingButton = (Button) view.findViewById(R.id.signinbtn);
@@ -56,6 +59,14 @@ public class LoginFragment extends Fragment {
             signup();
         });
         return view;
+    }
+
+    private void checkSession() {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 
     private void signup() {

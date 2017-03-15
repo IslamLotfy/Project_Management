@@ -11,8 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.islam.project_management.Adapters.ProjectsAdapter;
+import com.example.islam.project_management.DetailsActivity;
+import com.example.islam.project_management.Models.ActivityModel;
 import com.example.islam.project_management.Models.ProjectModel;
-import com.example.islam.project_management.ProjectDetailsActivity;
 import com.example.islam.project_management.R;
 import com.example.islam.project_management.RxFirebase.Authenticator;
 import com.example.islam.project_management.RxFirebase.RxFireBaseDB;
@@ -20,7 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,7 +49,7 @@ public class MainActivityFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         fireBaseDB = new RxFireBaseDB();
-        projectModels = new LinkedList<>();
+        projectModels = new ArrayList<>();
         authenticator=Authenticator.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -66,19 +67,16 @@ public class MainActivityFragment extends Fragment {
     }
 
     public void getProjects() {
-        RxFireBaseDB.observeValueEvent(databaseReference.child(companyId).child("projects").child("project1ID"))
+        RxFireBaseDB.observeValueEvent(databaseReference.child(companyId).child("projects"))
                 .subscribe(dataSnapshot -> {
-                    Log.e("retrieving projects", dataSnapshot.toString());
-                    projectModels.clear();
-                    for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                        ProjectModel projectModel = singleSnapshot.getValue(ProjectModel.class);
-                        projectModels.add(projectModel);
-                        Log.e("model", projectModel.toString());
+                    projectModels = new ArrayList<>();
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        projectModels.add(child.getValue(ProjectModel.class));
                     }
-
+                    Log.e("retrieving projects", dataSnapshot.getValue(ActivityModel.class).toString());
                     adapter = new ProjectsAdapter(projectModels);
                     adapter.setProjectSelectedlistener(projectModel -> {
-                        Intent intent = new Intent(getActivity(), ProjectDetailsActivity.class);
+                        Intent intent = new Intent(getActivity(), DetailsActivity.class);
                         intent.putExtra("project", projectModel);
                         startActivity(intent);
                     });

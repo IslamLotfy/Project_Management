@@ -26,7 +26,7 @@ public class PendingActivitesFragment extends android.support.v4.app.Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ProjectModel model = (ProjectModel) getActivity().getIntent().getSerializableExtra("project");
-        adapter = new ActivityAdapter(model.getPendingActivity());
+//        adapter = new ActivityAdapter(model.getPendingActivity());
         Toast.makeText(getActivity(), model.toString(), Toast.LENGTH_SHORT).show();
         adapter.setListener(activityModel -> {
             Toast.makeText(getActivity(), activityModel.toString(), Toast.LENGTH_SHORT).show();

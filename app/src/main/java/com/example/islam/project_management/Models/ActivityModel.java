@@ -5,6 +5,7 @@ package com.example.islam.project_management.Models;
  */
 
 public class ActivityModel {
+
     private String date;
     private String duration;
     private String user;

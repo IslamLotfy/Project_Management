@@ -13,9 +13,11 @@ import java.util.Map;
  */
 
 public class ProjectModel implements Serializable {
-    private List<ActivityModel> approvedActivity;
-    private List<ActivityModel> pendingActivity;
-    private List<Map<String, String>> Users;
+
+    private Map<String, ActivityModel> approvedActivity;
+    private Map<String, ActivityModel> pendingActivity;
+    private List<String> Users;
+
     private String deadline;
     private String hourRate;
     private String name;
@@ -24,11 +26,9 @@ public class ProjectModel implements Serializable {
     ProjectModel() {
     }
 
-    public ProjectModel(List<ActivityModel> approvedActivity,
-                        List<ActivityModel> pendeActivity, List<Map<String, String>> users, String deadline, String hourRate,
-                        String name, String projectId) {
+    public ProjectModel(Map<String, ActivityModel> approvedActivity, Map<String, ActivityModel> pendingActivity, List<String> users, String deadline, String hourRate, String name, String projectId) {
         this.approvedActivity = approvedActivity;
-        this.pendingActivity = pendeActivity;
+        this.pendingActivity = pendingActivity;
         Users = users;
         this.deadline = deadline;
         this.hourRate = hourRate;
@@ -47,20 +47,19 @@ public class ProjectModel implements Serializable {
                 '}';
     }
 
-    public List<ActivityModel> getApprovedActivity() {
+    public Map<String, ActivityModel> getApprovedActivity() {
         return approvedActivity;
     }
 
-    public void setApprovedActivity(
-            List<ActivityModel> approvedActivity) {
+    public void setApprovedActivity(Map<String, ActivityModel> approvedActivity) {
         this.approvedActivity = approvedActivity;
     }
 
-    public List<ActivityModel> getPendingActivity() {
+    public Map<String, ActivityModel> getPendingActivity() {
         return pendingActivity;
     }
 
-    public void setPendingActivity(List<ActivityModel> pendingActivity) {
+    public void setPendingActivity(Map<String, ActivityModel> pendingActivity) {
         this.pendingActivity = pendingActivity;
     }
 
@@ -96,11 +95,11 @@ public class ProjectModel implements Serializable {
         this.projectId = projectId;
     }
 
-    public List<Map<String, String>> getUsers() {
+    public List<String> getUsers() {
         return Users;
     }
 
-    public void setUsers(List<Map<String, String>> users) {
+    public void setUsers(List<String> users) {
         Users = users;
     }
 }

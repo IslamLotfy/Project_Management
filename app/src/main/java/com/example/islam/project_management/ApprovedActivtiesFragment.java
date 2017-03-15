@@ -27,7 +27,7 @@ public class ApprovedActivtiesFragment extends android.support.v4.app.Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ProjectModel model = (ProjectModel) getActivity().getIntent().getSerializableExtra("project");
-        adapter = new ActivityAdapter(model.getApprovedActivity());
+//        adapter = new ActivityAdapter(model.getApprovedActivity());
         adapter.setListener(activityModel -> {
             Toast.makeText(getActivity(), activityModel.toString(), Toast.LENGTH_SHORT).show();
         });
