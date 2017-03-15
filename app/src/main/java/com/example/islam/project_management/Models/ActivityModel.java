@@ -5,15 +5,19 @@ package com.example.islam.project_management.Models;
  */
 
 public class ActivityModel {
-    String date;
-    String duration;
-    String user;
+    private String date;
+    private String duration;
+    private String user;
+    private String activityId;
+    private String project;
     ActivityModel(){}
 
-    public ActivityModel(String date, String duration, String user) {
+    public ActivityModel(String date, String duration, String user, String activityId, String project) {
         this.date = date;
         this.duration = duration;
         this.user = user;
+        this.activityId = activityId;
+        this.project = project;
     }
 
 
@@ -39,5 +43,21 @@ public class ActivityModel {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
     }
 }

@@ -1,10 +1,12 @@
-package com.example.islam.project_management;
+package com.example.islam.project_management.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.islam.project_management.R;
 
 public class MainActivity extends AppCompatActivity {
 

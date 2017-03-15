@@ -5,35 +5,19 @@ package com.example.islam.project_management.RxFirebase;
  */
 
 import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.widget.Toast;
 
-import com.digits.sdk.android.Digits;
-import com.example.islam.project_management.R;
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.HttpMethod;
 import com.facebook.login.LoginManager;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.kelvinapps.rxfirebase.RxFirebaseUser;
 
-import org.json.JSONObject;
-
-
 import rx.Observable;
 
-import static android.app.Activity.RESULT_OK;
 import static com.google.firebase.auth.FirebaseAuth.AuthStateListener;
 
 
@@ -45,14 +29,14 @@ public class Authenticator {
     private static Authenticator instance;
     private FirebaseAuth mAuth;
 
+    private Authenticator() {
+        mAuth = FirebaseAuth.getInstance();
+    }
+
     public synchronized static Authenticator getInstance() {
         if (instance == null)
             instance = new Authenticator();
         return instance;
-    }
-
-    private Authenticator() {
-        mAuth = FirebaseAuth.getInstance();
     }
 
 //    public void grantAccess(Activity activity) {
@@ -123,6 +107,11 @@ public class Authenticator {
     public String getUserEmail() {
         FirebaseUser user = mAuth.getCurrentUser();
         return user == null? "": user.getEmail();
+    }
+
+    public String getUserID() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        return user == null ? "" : user.getUid();
     }
 
     public Uri getPhotoUri() {

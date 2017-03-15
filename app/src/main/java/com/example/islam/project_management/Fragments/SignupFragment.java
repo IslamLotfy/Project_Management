@@ -1,4 +1,4 @@
-package com.example.islam.project_management;
+package com.example.islam.project_management.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.islam.project_management.Activities.Login;
+import com.example.islam.project_management.R;
 import com.example.islam.project_management.RxFirebase.Authenticator;
 
 /**
